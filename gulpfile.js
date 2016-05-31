@@ -16,7 +16,6 @@ var sourceMap = require('gulp-sourcemaps');
 var lesswatch = require('gulp-watch-less');
 
 //Dev Tools
-var browserSync = require('browser-sync').create();
 var es = require('event-stream');
 
 //On Error
@@ -29,16 +28,6 @@ var onError = function (err) {
 
 
 //TASKS
-
-// Static server
-gulp.task('browser-sync', function() {
-  browserSync.init({
-    server: {
-      baseDir: "./"
-    }
-  })
-  browserSync.reload();
-});
 
 
 //Compile all less files into main less file and output minified css
@@ -61,7 +50,6 @@ gulp.task('less', function() {
     .pipe(concat('theme.min.css'))
     .pipe(gulp.dest('assets/less/compiled/'))
     .pipe(filesize())
-    .pipe(browserSync.stream())
     .on('error', gutil.log);
 });
 
@@ -84,7 +72,6 @@ gulp.task('scripts', function() {
     .pipe(uglify())
     .pipe(gulp.dest('assets/js/compiled/'))
     .pipe(filesize())
-    .pipe(browserSync.stream())
     .on('error', gutil.log);
 });
 
@@ -97,13 +84,12 @@ gulp.task('bs-reload', function () {
 //Watch Task
 //Watches less and js directories for change.
 gulp.task('watch', function() {
-  gulp.watch('*.html', ['bs-reload']);
   gulp.watch('assets/less/**/*.less', ['less']);
   gulp.watch('assets/js/*.js', ['scripts']);
 });
 
 //Start work with project using the default "gulp" command
-gulp.task('default', ['less', 'scripts', 'browser-sync', 'watch']);
+gulp.task('default', ['less', 'scripts', 'watch']);
 
 
 
