@@ -80,7 +80,7 @@ gulp.task('less-inner', function() {
 gulp.task('scripts', function() {
   return gulp.src([
     'assets/vendor/jquery-2.2.3/jquery-2.2.3.min.js',
-    'assets/vendor/bootstrap-3.3.6/dist/js/bootstrap.js',
+    'assets/vendor/bootstrap-3.3.6/js/bootstrap.js',
 
     //ADD VENDOR JAVASCRIPT HERE
 
