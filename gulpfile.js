@@ -49,7 +49,7 @@ gulp.task('less-main', function() {
     .pipe(sourceMap.init())
     .pipe(less( {compress : true} ))
     .pipe(concat('theme.min.css'))
-    .pipe(sourceMap.write('maps/'))
+    .pipe(sourceMap.write('_maps/'))
     .pipe(gulp.dest('assets/less/global/'))
     .pipe(filesize())
     .on('error', gutil.log);
